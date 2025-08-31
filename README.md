@@ -4,15 +4,6 @@
 
 ---
 
-## 目录
-
-- [概述](#概述)
-- [快速开始](#快速开始)
-- [输出说明](#输出说明)
-- [注意事项](#注意事项)
-
----
-
 ## 概述
 
 Track Doc 通过自定义注解标记业务方法或事件，编译时自动生成 Excel 文档，记录事件名称、描述和方法信息，避免人工整理埋点表格，提高效率。
@@ -56,6 +47,8 @@ public class UserLoginSample {
 }
 ```
 
+---
+
 ## 输出说明
 - 默认输出路径：`target/classes/EventTrack_yyyyMMddHHmmss.xlsx`
 - Excel 文件名包含时间戳，避免覆盖历史记录。
@@ -70,6 +63,7 @@ public class UserLoginSample {
 | 字段描述 | `@EventField.desc`    | 字段描述    |
 | 字段类型 | 类字段类型                 | Java 类型 |
 
+---
 
 ## 注意事项
 - 框架当前只在编译阶段生成 Excel，请确保相关埋点类在编译路径下。

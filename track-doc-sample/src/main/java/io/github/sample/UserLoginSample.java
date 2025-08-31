@@ -1,7 +1,7 @@
-package org.ephemetra.sample;
+package io.github.sample;
 
-import org.ephemetra.annotation.EventField;
-import org.ephemetra.annotation.EventTrack;
+import io.github.ephemetra.annotation.EventField;
+import io.github.ephemetra.annotation.EventTrack;
 
 import java.time.LocalDateTime;
 

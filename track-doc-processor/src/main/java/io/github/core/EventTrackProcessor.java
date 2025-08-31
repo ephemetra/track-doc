@@ -1,19 +1,16 @@
-package org.ephemetra.core;
+package io.github.core;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.write.style.ColumnWidth;
-import com.alibaba.excel.annotation.write.style.ContentStyle;
-import com.alibaba.excel.enums.poi.HorizontalAlignmentEnum;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.google.auto.service.AutoService;
 import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
-import org.ephemetra.annotation.EventField;
-import org.ephemetra.annotation.EventTrack;
+import io.github.ephemetra.annotation.EventField;
+import io.github.ephemetra.annotation.EventTrack;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
@@ -24,7 +21,6 @@ import javax.lang.model.util.ElementFilter;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 import java.io.File;
-import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,7 +29,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @AutoService(Processor.class)
-@SupportedAnnotationTypes("org.ephemetra.annotation.EventTrack")
+@SupportedAnnotationTypes("io.github.ephemetra.annotation.EventTrack")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class EventTrackProcessor extends AbstractProcessor {
 
