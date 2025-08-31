@@ -6,8 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.CLASS)
-@Target(ElementType.TYPE)
-public @interface EventTrack {
+@Target(ElementType.FIELD)
+public @interface EventField {
 
     /**
      * 事件名称
@@ -18,9 +18,4 @@ public @interface EventTrack {
      * 事件描述
      */
     String desc() default "";
-
-    /**
-     * 触发时机
-     */
-    String trigger() default "";
 }
