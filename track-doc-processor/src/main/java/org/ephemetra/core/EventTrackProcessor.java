@@ -55,7 +55,7 @@ public class EventTrackProcessor extends AbstractProcessor {
                 EventField fieldAnnotation = fieldElement.getAnnotation(EventField.class);
                 String fieldName = CommonUtils.defaultIfBlank(fieldAnnotation.name(), fieldElement.getSimpleName().toString());
                 String fieldType = fieldElement.asType().toString();
-                String fieldDesc = classAnnotation.desc();
+                String fieldDesc = fieldAnnotation.desc();
                 EventMetadata metadata = new EventMetadata();
                 metadata.setClassName(className);
                 metadata.setClassDesc(classDesc);
