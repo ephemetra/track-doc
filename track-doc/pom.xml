@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.ephemetra</groupId>
+        <groupId>io.github.ephemetra</groupId>
         <artifactId>track-doc-all</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -31,7 +31,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.ephemetra</groupId>
+            <groupId>io.github.ephemetra</groupId>
             <artifactId>track-doc-processor</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>
@@ -40,7 +40,6 @@
 
     <build>
         <plugins>
-            <!-- 可选：Maven Compiler Plugin 配置，方便用户直接启用注解处理器 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -48,7 +47,7 @@
                 <configuration>
                     <annotationProcessorPaths>
                         <path>
-                            <groupId>org.ephemetra</groupId>
+                            <groupId>io.github.ephemetra</groupId>
                             <artifactId>track-doc-processor</artifactId>
                             <version>1.0.0</version>
                         </path>
@@ -58,7 +57,6 @@
         </plugins>
     </build>
 
-    <!-- 发布到 Maven 仓库（如果有私服或 Maven Central） -->
     <distributionManagement>
         <repository>
             <id>ossrh</id>
