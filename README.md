@@ -8,11 +8,8 @@
 
 - [概述](#概述)
 - [快速开始](#快速开始)
-- [使用方法](#使用方法)
-- [Maven 配置](#maven-配置)
-- [示例项目](#示例项目)
+- [输出说明](#输出说明)
 - [注意事项](#注意事项)
-- [维护者信息](#维护者信息)
 
 ---
 
@@ -59,7 +56,7 @@ public class UserLoginSample {
 }
 ```
 
-### 3. Excel 输出说明
+## 输出说明
 - 默认输出路径：`target/classes/EventTrack_yyyyMMddHHmmss.xlsx`
 - Excel 文件名包含时间戳，避免覆盖历史记录。
 - 列说明：
@@ -74,7 +71,7 @@ public class UserLoginSample {
 | 字段类型 | 类字段类型                 | Java 类型 |
 
 
-### 注意事项
+## 注意事项
 - 框架当前只在编译阶段生成 Excel，请确保相关埋点类在编译路径下。
 - 埋点文档默认会生成在 target/classes，可根据需要修改生成路径（未来版本可扩展）。
 - Java 1.8+ 支持。
