@@ -73,7 +73,7 @@ public class EventTrackProcessor extends AbstractProcessor {
     }
 
     public String getFilename() {
-        return String.format("EventTrack_%s.xlsx", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")));
+        return String.format("EventTrack_%s.xlsx", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
     }
 
     private void generateExcel(List<EventMetadata> metadataList) {
