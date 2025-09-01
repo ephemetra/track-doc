@@ -3,48 +3,81 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>io.github.ephemetra</groupId>
-        <artifactId>track-doc-all</artifactId>
-        <version>1.0.0</version>
-    </parent>
 
+    <groupId>io.github.ephemetra</groupId>
     <artifactId>track-doc</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
+
     <name>Track Doc</name>
     <description>Annotation processor for generating business tracking Excel documentation.</description>
     <url>https://github.com/ephemetra/track-doc-all</url>
-
     <licenses>
         <license>
-            <name>Apache License 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
         </license>
     </licenses>
-
     <developers>
         <developer>
             <name>ephemetra</name>
             <email>ephemetra@163.com</email>
+            <timezone>+8</timezone>
         </developer>
     </developers>
+    <scm>
+        <connection>scm:git:git://github.com/ephemetra/track-doc-all.git</connection>
+        <developerConnection>scm:git:ssh://github.com/ephemetra/track-doc-all.git</developerConnection>
+        <url>https://github.com/ephemetra/track-doc-all</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/ephemetra/track-doc-all/issues</url>
+    </issueManagement>
+
+    <properties>
+        <!-- project java version -->
+        <java.version>8</java.version>
+        <!-- project encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- project dependency package version -->
+        <track-doc-processor.version>1.0.0</track-doc-processor.version>
+
+        <!-- project dependency plugin version -->
+        <apache-maven-plugins.groupId>org.apache.maven.plugins</apache-maven-plugins.groupId>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+        <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
+        <license-maven-plugin.version>2.11</license-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.github.ephemetra</groupId>
             <artifactId>track-doc-processor</artifactId>
-            <version>1.0.0</version>
+            <version>${track-doc-processor.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+                <groupId>${apache-maven-plugins.groupId}</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>io.github.ephemetra</groupId>
@@ -52,16 +85,108 @@
                             <version>1.0.0</version>
                         </path>
                     </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>${apache-maven-plugins.groupId}</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>${apache-maven-plugins.groupId}</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>${apache-maven-plugins.groupId}</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin.version}</version>
+                <configuration>
+                    <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                    </gpgArguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central-publishing-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${license-maven-plugin.version}</version>
+                <configuration>
+                    <basedir>${basedir}</basedir>
+                    <quiet>false</quiet>
+                    <aggregate>false</aggregate>
+                    <useDefaultExcludes>true</useDefaultExcludes>
+                    <useDefaultMapping>true</useDefaultMapping>
+                    <mapping>
+                        <java>SLASHSTAR_STYLE</java>
+                    </mapping>
+                    <strictCheck>true</strictCheck>
+                    <failIfMissing>true</failIfMissing>
+                    <aggregate>true</aggregate>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <properties>
+                        <owner>ephemetra</owner>
+                        <email>ephemetra@163.com</email>
+                        <year>2025</year>
+                    </properties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>ossrh</id>
-            <name>OSSRH Repository</name>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 </project>
