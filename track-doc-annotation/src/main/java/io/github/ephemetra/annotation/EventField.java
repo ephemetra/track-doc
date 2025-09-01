@@ -10,12 +10,12 @@ import java.lang.annotation.Target;
 public @interface EventField {
 
     /**
-     * 事件名称
+     * 事件字段名
      */
     String name() default "";
 
     /**
-     * 事件描述
+     * 事件字段描述
      */
     String desc() default "";
 }

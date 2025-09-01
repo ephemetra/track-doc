@@ -54,14 +54,14 @@ public class UserLoginSample {
 - Excel 文件名包含时间戳，避免覆盖历史记录。
 - 列说明：
 
-| 列名   | 来源                    | 说明      |
-| ---- | --------------------- | ------- |
-| 事件名称 | `@EventTrack.name`    | 事件标识名称  |
-| 事件描述 | `@EventTrack.desc`    | 事件描述    |
-| 触发场景 | `@EventTrack.trigger` | 事件触发场景  |
-| 字段名称 | 类字段名                  | 事件数据字段名 |
-| 字段描述 | `@EventField.desc`    | 字段描述    |
-| 字段类型 | 类字段类型                 | Java 类型 |
+| 列名   | 来源                | 说明    |
+| ---- | ----------------- | ----- |
+| 事件名称 | `@EventTrack.name` | 事件标识名称 |
+| 事件描述 | `@EventTrack.desc` | 事件描述  |
+| 触发场景 | `@EventTrack.trigger` | 事件触发场景 |
+| 字段名称 | `@EventField.name` | 事件字段名 |
+| 字段描述 | `@EventField.desc` | 事件字段描述  |
+| 字段类型 | 类字段类型     | Java 类型 |
 
 ---
 
