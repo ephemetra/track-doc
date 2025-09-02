@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.github.ephemetra</groupId>
-        <artifactId>track-doc-all</artifactId>
+        <artifactId>track-doc</artifactId>
         <version>1.0.0</version>
     </parent>
 
@@ -20,19 +20,14 @@
     </dependencies>
 
     <build>
+        <!-- 示例项目，跳过deploy -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.0</version>
                 <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>io.github.ephemetra</groupId>
-                            <artifactId>track-doc-processor</artifactId>
-                            <version>1.0.0</version>
-                        </path>
-                    </annotationProcessorPaths>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
         </plugins>
