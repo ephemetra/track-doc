@@ -12,7 +12,6 @@ Track Doc 通过自定义注解标记业务方法或事件，编译时自动生�
 
 - `track-doc-annotation`：自定义注解定义模块
 - `track-doc-processor`：注解处理器，实现 Excel 自动生成
-- `track-doc`：集成模块，提供 Maven 依赖
 - `track-doc-sample`：示例项目
 
 ---
