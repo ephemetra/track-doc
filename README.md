@@ -30,9 +30,10 @@ Track Doc 通过自定义注解标记业务方法或事件，编译时自动生�
 ```
 
 ### 2. 注解示例
+
 ```java
-import io.github.ephemetra.annotation.EventField;
-import io.github.ephemetra.annotation.EventTrack;
+import annotation.io.github.EventField;
+import annotation.io.github.EventTrack;
 
 import java.time.LocalDateTime;
 

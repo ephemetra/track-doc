@@ -1,4 +1,4 @@
-package io.github.core;
+package io.github.ephemetra.util;
 
 public class CommonUtils {
 
