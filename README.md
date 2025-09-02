@@ -24,7 +24,7 @@ Track Doc 通过自定义注解标记业务方法或事件，编译时自动生�
 <dependency>
     <groupId>io.github.ephemetra</groupId>
     <artifactId>track-doc</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

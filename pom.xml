@@ -6,11 +6,12 @@
 
     <groupId>io.github.ephemetra</groupId>
     <artifactId>track-doc</artifactId>
-    <version>1.0.0</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
-        <module>track-doc-annotation</module>
+        <module>track-doc-dependencies</module>
         <module>track-doc-processor</module>
+        <module>track-doc-annotation</module>
         <module>track-doc-sample</module>
     </modules>
 
@@ -45,13 +46,11 @@
 
     <properties>
         <!-- project java version -->
+        <revision>1.0.1</revision>
         <java.version>8</java.version>
         <!-- project encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <!-- project dependency package version -->
-        <track-doc-processor.version>1.0.0</track-doc-processor.version>
 
         <!-- project dependency plugin version -->
         <apache-maven-plugins.groupId>org.apache.maven.plugins</apache-maven-plugins.groupId>
@@ -63,47 +62,21 @@
         <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
     </properties>
 
-    <dependencies>
-        <!--生成excel文档-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>easyexcel</artifactId>
-            <version>4.0.3</version>
-        </dependency>
-
-        <!--注解处理器-->
-        <dependency>
-            <groupId>com.google.auto.service</groupId>
-            <artifactId>auto-service</artifactId>
-            <version>1.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.ephemetra</groupId>
+                <artifactId>track-doc-dependencies</artifactId>
+                <version>${revision}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
-            <plugin>
-                <groupId>${apache-maven-plugins.groupId}</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>io.github.ephemetra</groupId>
-                            <artifactId>track-doc-processor</artifactId>
-                            <version>1.0.0</version>
-                        </path>
-                    </annotationProcessorPaths>
-                    <compilerArgs>
-                        <arg>-parameters</arg>
-                    </compilerArgs>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>${apache-maven-plugins.groupId}</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -196,6 +169,25 @@
                     <execution>
                         <goals>
                             <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <configuration>
+                    <flattenMode>oss</flattenMode>
+                    <updatePomFile>true</updatePomFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
                         </goals>
                     </execution>
                 </executions>
