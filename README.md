@@ -6,13 +6,12 @@
 
 ## 概述
 
-Track Doc 通过自定义注解标记业务方法或事件，编译时自动生成 Excel 文档，记录事件名称、描述和方法信息，避免人工整理埋点表格，提高效率。
+Track Doc 通过自定义注解标记业务方法或事件，编译时自动生成 Excel 文档，记录事件名称、描述和字段信息，避免人工整理埋点表格，提高效率。
 
-核心模块：
-
-- `track-doc-annotation`：自定义注解定义模块
-- `track-doc-processor`：注解处理器，实现 Excel 自动生成
-- `track-doc-sample`：示例项目
+- **自动扫描**：通过注解收集埋点事件信息。
+- **Excel 文档**：生成带格式的 Excel，表头对齐、边框、列宽优化。
+- **无侵入性**：无需运行额外代码，编译即可生成。
+- **便于审查**：产出表格清晰，产品 & 测试可直接使用
 
 ---
 
@@ -48,6 +47,17 @@ public class UserLoginSample {
 }
 ```
 
+### 3. 编译生成文档
+
+运行编译命令:
+```bash
+mvn clean compile
+```
+生成的 Excel 文件默认输出到：
+```bash
+target/classes/EventTrack_yyyyMMddHHmmss.xlsx
+```
+
 ---
 
 ## 输出说明
@@ -69,4 +79,4 @@ public class UserLoginSample {
 ## 注意事项
 - 框架当前只在编译阶段生成 Excel，请确保相关埋点类在编译路径下。
 - 埋点文档默认会生成在 target/classes，可根据需要修改生成路径（未来版本可扩展）。
-- Java 1.8+ 支持。
+- 环境要求：Java 1.8+  Maven3.6+。
